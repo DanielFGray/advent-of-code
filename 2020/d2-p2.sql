@@ -4,8 +4,8 @@ with t as (
     split[2]::int as b,
     split[3] as char,
     regexp_split_to_array(split[4], '') as pattern
-  from rules as t,
-  lateral regexp_split_to_array(rule, '[ :-]+') as split
+  from rules as row,
+  lateral regexp_split_to_array(row.rule, '[ :-]+') as split
 )
 select count(*)
 from t

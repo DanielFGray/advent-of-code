@@ -7,7 +7,7 @@ with t as (
   select
     split[1]::int as min,
     split[2]::int as max,
-    array_length(array(select unnest(regexp_matches(split[4], split[3], 'g'))), 1) as char_length
+    cardinality(array(select regexp_matches(split[4], split[3], 'g'))) as char_length
   from rules as row,
   lateral regexp_split_to_array(row.rule, '[ :-]+') as split
 )

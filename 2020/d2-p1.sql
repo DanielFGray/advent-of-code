@@ -1,7 +1,5 @@
 create table rules (rule text);
-
-\copy numbers from stdin
---\copy numbers from program 'curl -b session.cookie https://adventofcode.com/2020/day/2/input';
+\copy rules from program 'curl -b session.cookie https://adventofcode.com/2020/day/2/input';
 
 with t as (
   select

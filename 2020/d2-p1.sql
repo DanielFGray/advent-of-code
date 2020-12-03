@@ -1,5 +1,7 @@
 create table rules (rule text);
-\copy rules from program 'curl -b session.cookie https://adventofcode.com/2020/day/2/input';
+
+\copy rules from stdin
+-- \copy rules from program 'curl -b session.cookie https://adventofcode.com/2020/day/2/input';
 
 with t as (
   select
@@ -9,8 +11,7 @@ with t as (
   from rules as row,
   lateral regexp_split_to_array(row.rule, '[ :-]+') as split
 )
-select
-  count(*)
-  from t
-  where t.char_length
-  between t.min and t.max;
+select count(*)
+from t
+where t.char_length
+between t.min and t.max;

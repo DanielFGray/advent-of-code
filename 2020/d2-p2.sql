@@ -7,9 +7,8 @@ with t as (
   from rules as t,
   lateral regexp_split_to_array(rule, '[ :-]+') as split
 )
-select
-  count(*)
-  from t
-  where t.char
-  in (t.pattern[t.a], t.pattern[t.b])
-  and t.pattern[t.a] <> t.pattern[t.b]
+select count(*)
+from t
+where t.char
+in (t.pattern[t.a], t.pattern[t.b])
+and t.pattern[t.a] <> t.pattern[t.b]

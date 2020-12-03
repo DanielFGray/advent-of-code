@@ -14,5 +14,4 @@ select count(*) from (
     array_length(array(select unnest(regexp_matches(str[4], str[3], 'g'))), 1) as char_length
   from rules
 ) as t
-  where t.char_length >= t.min
-  and   t.char_length <= t.max;
+  where t.char_length between t.min and t.max;
